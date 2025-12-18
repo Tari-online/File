@@ -351,14 +351,15 @@
     </div>
 
     <script>
-         window.hideSplash = function() {
+  window.hideSplash = () => {
             const splash = document.getElementById('splash-screen');
-            if(splash) {
-                splash.style.opacity = '0';
-                setTimeout(() => { splash.style.display = 'none'; }, 300); // Force remove
-            } else {
-                console.error("Splash screen element not found!");
-            }
+            // 1. Move it up
+            splash.style.transform = 'translateY(-100%)';
+            
+            // 2. Force delete it after 0.5 seconds
+            setTimeout(() => {
+                splash.style.display = 'none'; 
+            }, 500);
         };
         const SUPABASE_URL = "https://fpgspmhgwcmhaaxsphcd.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZ3NwbWhnd2NtaGFheHNwaGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4MjYyMTEsImV4cCI6MjA4MTQwMjIxMX0.QyChZ3agLF1MiTzB8XzbrP4pCgBXsT1i9VWfQqu_VOw";
