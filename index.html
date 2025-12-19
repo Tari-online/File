@@ -353,23 +353,40 @@
     </div>
 
     <script>
+        window.hideSplash = function() {
+            const splash = document.getElementById('splash-screen');
+            if(splash) {
+                splash.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+                splash.style.transform = "translateY(-100%)";
+                splash.style.opacity = "0";
+                // Force removal after animation
+                setTimeout(() => { splash.style.display = 'none'; }, 500);
+            } else {
+                console.error("Splash screen missing");
+            }
+        };
+
+        // Trap hidden mobile errors
+        window.onerror = function(msg, url, line) {
+            // Only show alert if it's a critical script error preventing load
+            if (msg.toLowerCase().includes('script error') || msg.toLowerCase().includes('syntax')) {
+                 alert("App Error: " + msg);
+            }
+        };
+
         const SUPABASE_URL = "https://fpgspmhgwcmhaaxsphcd.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZ3NwbWhnd2NtaGFheHNwaGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4MjYyMTEsImV4cCI6MjA4MTQwMjIxMX0.QyChZ3agLF1MiTzB8XzbrP4pCgBXsT1i9VWfQqu_VOw";
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        
+        let supabase;
+        try {
+            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        } catch(err) {
+            console.error("Supabase Init Failed", err);
+            alert("Database Error. Please refresh.");
+        }
 
+        // Restored Variables
         let currentUser = null, userData = null, cart = [], historyOrders = [], allMenuItems = [], allModifiers = [], currentItem = null, modalQty = 1, editingCartIndex = -1, activeDiscount = 0, activePromoCode = "", loyaltySettings = { method: 'fixed', value: 10 };
-
-        window.hideSplash = () => {
-    const splash = document.getElementById('splash-screen');
-
-    // animate out
-    splash.style.transform = 'translateY(-100%)';
-
-    // HARD REMOVE from interaction layer
-    setTimeout(() => {
-        splash.style.display = 'none';
-        splash.style.pointerEvents = 'none';
-    }, 600);
 
     // boot app
     loadData();
