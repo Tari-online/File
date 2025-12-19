@@ -149,7 +149,9 @@
             <p id="splash-intro" class="text-slate-300 text-sm font-medium max-w-[250px] leading-relaxed">Delicious burgers and fries made with passion and served fresh daily.</p>
         </div>
         <div class="relative w-64 h-64 z-10 my-auto"><img id="splash-circle-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" class="w-full h-full object-cover rounded-full border-4 border-slate-800 shadow-2xl"></div>
-        <button onclick="hideSplash()" class="w-full bg-orange-500 text-white font-bold py-4 rounded-2xl shadow-xl shadow-orange-500/20 active:scale-95 transition text-lg z-10 animate-pulse btn-brand flex items-center justify-center gap-2">Order Now <i class="fa-solid fa-arrow-up"></i></button>
+        <button id="order-now-btn" class="w-full bg-orange-500 text-white font-bold py-4 rounded-2xl shadow-xl shadow-orange-500/20 active:scale-95 transition text-lg z-10 animate-pulse btn-brand flex items-center justify-center gap-2">
+  Order Now <i class="fa-solid fa-arrow-up"></i>
+        </button>
     </div>
 
     <div id="view-auth" class="fixed inset-0 z-[100] bg-white flex flex-col items-center justify-center p-8 auth-hidden shadow-2xl transition-transform duration-300 transform translate-y-full">
@@ -372,6 +374,15 @@
     // boot app
     loadData();
 };
+        document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("order-now-btn");
+  if (btn) {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      hideSplash();
+    });
+  }
+});
         window.showToast = (msg, isErr=false) => { 
             const t = document.getElementById('toast'); 
             document.getElementById('toast-msg').innerText = msg; 
