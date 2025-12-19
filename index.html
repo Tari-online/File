@@ -56,7 +56,16 @@
 <body class="text-slate-800 pb-24 select-none">
 
     <div id="preloader"><div class="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-500"></div></div>
-
+<script>
+        setTimeout(function() {
+            var loader = document.getElementById('preloader');
+            if (loader) {
+                console.log("Force starting app...");
+                loader.style.opacity = '0';
+                setTimeout(function() { loader.style.display = 'none'; }, 500);
+            }
+        }, 3000); 
+</script>
     <div id="closed-banner">
         <div class="text-center text-white px-8 max-w-sm w-full">
             <div class="w-24 h-24 bg-slate-800 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl border-4 border-slate-700"><span class="text-5xl">😴</span></div>
