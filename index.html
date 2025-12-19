@@ -356,23 +356,24 @@
         window.hideSplash = function() {
             const splash = document.getElementById('splash-screen');
             if(splash) {
-                splash.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+                // Animate it moving up
+                splash.style.transition = "transform 0.6s ease-in-out";
                 splash.style.transform = "translateY(-100%)";
-                splash.style.opacity = "0";
-                // Force removal after animation
-                setTimeout(() => { splash.style.display = 'none'; }, 500);
-            } else {
-                console.error("Splash screen missing");
+                
+                // Force delete it from the screen after 0.5s
+                setTimeout(() => {
+                    splash.style.display = 'none'; 
+                }, 500);
             }
         };
 
         // Trap hidden mobile errors
         window.onerror = function(msg, url, line) {
-            // Only show alert if it's a critical script error preventing load
-            if (msg.toLowerCase().includes('script error') || msg.toLowerCase().includes('syntax')) {
-                 alert("App Error: " + msg);
+            if (msg.toLowerCase().includes('script error')) {
+                 alert("App Error: Please refresh the page.");
             }
         };
+        // ==========================================
 
         const SUPABASE_URL = "https://fpgspmhgwcmhaaxsphcd.supabase.co";
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZwZ3NwbWhnd2NtaGFheHNwaGNkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjU4MjYyMTEsImV4cCI6MjA4MTQwMjIxMX0.QyChZ3agLF1MiTzB8XzbrP4pCgBXsT1i9VWfQqu_VOw";
@@ -382,24 +383,10 @@
             supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
         } catch(err) {
             console.error("Supabase Init Failed", err);
-            alert("Database Error. Please refresh.");
         }
 
-        // Restored Variables
         let currentUser = null, userData = null, cart = [], historyOrders = [], allMenuItems = [], allModifiers = [], currentItem = null, modalQty = 1, editingCartIndex = -1, activeDiscount = 0, activePromoCode = "", loyaltySettings = { method: 'fixed', value: 10 };
 
-    // boot app
-    loadData();
-};
-        document.addEventListener("DOMContentLoaded", () => {
-  const btn = document.getElementById("order-now-btn");
-  if (btn) {
-    btn.addEventListener("click", (e) => {
-      e.preventDefault();
-      hideSplash();
-    });
-  }
-});
         window.showToast = (msg, isErr=false) => { 
             const t = document.getElementById('toast'); 
             document.getElementById('toast-msg').innerText = msg; 
@@ -409,7 +396,10 @@
         window.copyPromo = (code) => { document.getElementById('promo-input').value = code; showToast("Code Copied!"); };
         function setBtnLoading(btn, isLoading, text='Processing') { if(isLoading) { btn.dataset.org = btn.innerText; btn.innerHTML=`<i class="fa-solid fa-circle-notch fa-spin mr-2"></i> ${text}`; btn.disabled=true; } else { btn.innerText = btn.dataset.org || 'Submit'; btn.disabled=false; } }
 
-        supabase.auth.onAuthStateChange((event, session) => { if (session) { currentUser = session.user; closeAuth(); loadUserProfile(currentUser.id); listenToOrders(currentUser.id); } else { currentUser = null; } });
+        if(supabase) {
+            supabase.auth.onAuthStateChange((event, session) => { if (session) { currentUser = session.user; closeAuth(); loadUserProfile(currentUser.id); listenToOrders(currentUser.id); } else { currentUser = null; } });
+        }
+        
         window.requireAuth = () => { if (currentUser) { switchView('profile'); } else { document.getElementById('view-auth').classList.remove('translate-y-full'); } }
         window.closeAuth = () => { document.getElementById('view-auth').classList.add('translate-y-full'); }
         window.toggleAuthMode = () => { document.getElementById('login-form').classList.toggle('hidden'); document.getElementById('signup-form').classList.toggle('hidden'); }
@@ -420,13 +410,12 @@
 
         // --- DATA & PRELOADER ---
         async function loadData() {
-            const safetyTimer = setTimeout(() => { const el = document.getElementById('preloader'); if (el) el.classList.add('loaded'); }, 3000);
             try {
                 // 1. Fetch Store Status
                 const { data: status } = await supabase.from('settings').select('data').eq('id', 'store_status').single();
                 checkStoreStatus(status?.data?.open ?? false);
 
-                // 2. Fetch Website Settings (NEW)
+                // 2. Fetch Website Settings (Updated)
                 const { data: web } = await supabase.from('settings').select('data').eq('id', 'website_settings').single();
                 if (web?.data) {
                     const d = web.data;
@@ -436,42 +425,32 @@
                         const h = document.getElementById('main-header'); 
                         h.style.backgroundColor = d.header_color;
                         h.classList.remove('bg-white/90', 'backdrop-blur-md');
-                    }        
+                    }
                     
-                    // Text & font //
-                                                            if(d.logo) {
+                    if(d.logo) {
                         const brand = document.getElementById('brand-container');
-                        
-                        // 1. Keep Container on the LEFT (Standard Flex)
                         brand.className = "flex items-center"; 
-                        
-                        // 2. Insert Logo (Left) + Text (Positioned in Center)
                         brand.innerHTML = `
                             <img src="${d.logo}" class="h-12 w-auto object-contain rounded-lg shadow-sm relative z-10">
-
                             <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center justify-center text-center z-0">
                                 <h1 class="text-3xl font-black text-white tracking-tight leading-none drop-shadow-md" style="font-family: 'Plus Jakarta Sans', sans-serif;">TARI</h1>
-                                
                                 <span class="text-[10px] font-black uppercase tracking-[0.2em] mt-1 text-gold-shine block whitespace-nowrap">Premium Food Truck</span>
                             </div>
                         `;
                     }
-                }         
+                }
+
+                // 2.5 Fetch Design
+                const { data: design } = await supabase.from('settings').select('data').eq('id', 'design').single();
+                if(design?.data?.primaryColor) {
+                    document.documentElement.style.setProperty('--primary', design.data.primaryColor);
+                }
+
                 // 3. Fetch Hero
                 const { data: hero } = await supabase.from('settings').select('data').eq('id', 'hero').single();
                 if(hero?.data?.images) { document.getElementById('hero-slider-container').innerHTML = hero.data.images.map((img,i) => `<img src="${img}" class="hero-slide ${i===0?'active-slide':''}">`).join(''); if(hero.data.title) document.getElementById('hero-title-text').innerText = hero.data.title; }
                 
-                let slideIdx = 0; setInterval(() => { const slides = document.querySelectorAll('.hero-slide'); if(slides.length > 1) { slides[slideIdx].classList.remove('active-slide'); slideIdx = (slideIdx + 1) % slides.length; slides[slideIdx].classList.add('active-slide'); } }, 3000);                // --- INSERT THIS BLOCK ---
-                
-                // 2.5 Fetch Design (Brand Color)
-                const { data: design } = await supabase.from('settings').select('data').eq('id', 'design').single();
-                if(design?.data?.primaryColor) {
-                    // This updates the --primary variable which controls all buttons/icons
-                    document.documentElement.style.setProperty('--primary', design.data.primaryColor);
-                }                
-
-                // --- END INSERT ---
-
+                let slideIdx = 0; setInterval(() => { const slides = document.querySelectorAll('.hero-slide'); if(slides.length > 1) { slides[slideIdx].classList.remove('active-slide'); slideIdx = (slideIdx + 1) % slides.length; slides[slideIdx].classList.add('active-slide'); } }, 3000);
 
                 // 4. Fetch Splash & Info
                 const { data: splash } = await supabase.from('settings').select('data').eq('id', 'splash').single();
@@ -498,7 +477,11 @@
                     checkStoreStatus(payload.new.data.open);
                 }).subscribe();
 
-            } catch (err) { console.error("Data Load Error:", err); } finally { clearTimeout(safetyTimer); document.getElementById('preloader').classList.add('loaded'); }
+            } catch (err) { console.error("Data Load Error:", err); } 
+            finally { 
+                // SAFETY: Always hide loader
+                document.getElementById('preloader').classList.add('loaded'); 
+            }
         }
 
         function checkStoreStatus(isOpen) {
@@ -718,7 +701,7 @@
         
         function startTicker() { if(window.trackerInterval) clearInterval(window.trackerInterval); window.trackerInterval = setInterval(() => { document.querySelectorAll('.dynamic-timer').forEach(el => { if(el.dataset.status === 'New Order') { el.innerText = "Waiting for acceptance..."; return; } if(el.dataset.status === 'Ready') { el.innerText = "Ready for pickup!"; return; } const target = parseInt(el.dataset.target); const now = Date.now(); const diff = target - now; if(diff <= 0) { el.innerText = "Finishing up..."; } else { const m = Math.floor(diff / 60000); const s = Math.floor((diff % 60000) / 1000); el.innerText = `Est: ${m}m ${s}s`; } }); }, 1000); }
 
-                function createTrackerCard(order, queueCount) { 
+        function createTrackerCard(order, queueCount) { 
             let step = 1; let txt = "We've received your order, waiting for the chef!"; 
             const estimatedMins = order.estimated_mins || (10 + (queueCount * 3));
             const createdAt = new Date(order.created_at).getTime();
