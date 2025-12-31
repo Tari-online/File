@@ -271,24 +271,29 @@
     </div>
 
     <div id="splash-screen" class="fixed inset-0 bg-slate-900 flex flex-col items-center justify-between pt-16 pb-10 px-6 z-[300] overflow-hidden transition-transform duration-700">        
-        <div class="floating-icon" style="top: 15%; left: 10%; animation-delay: 0s;">🍔</div>
-        <div class="floating-icon" style="top: 25%; right: 10%; animation-delay: 1.5s;">🍟</div>
-        <div class="floating-icon" style="bottom: 30%; left: 15%; animation-delay: 0.5s;">🥤</div>
-        <div class="floating-icon" style="top: 50%; right: 20%; animation-delay: 2s;">🍕</div>
-        <div class="floating-icon" style="bottom: 40%; right: 5%; animation-delay: 1s;">🌮</div>
-        <div class="floating-icon" style="top: 10%; left: 50%; animation-delay: 2.5s; font-size: 2.5rem;">🌭</div>
+        <div class="floating-icon" style="top: 20%; left: 10%; animation-delay: 0s;">🍔</div>
+        <div class="floating-icon" style="top: 38%; right: 10%; animation-delay: 1.5s;">🍟</div>
+        <div class="floating-icon" style="bottom: 20%; left: 15%; animation-delay: 0.5s;">🥤</div>
+        <div class="floating-icon" style="top: 50%; right: 20%; animation-delay: 2s;"></div>
+        <div class="floating-icon" style="bottom: 15%; right: 5%; animation-delay: 1s;">🥬</div>
+        <div class="floating-icon" style="top: 10%; left: 70%; animation-delay: 2.5s; font-size: 2.5rem;">🥩</div>
         <img id="splash-bg-img" class="absolute inset-0 w-full h-full object-cover opacity-30 hidden z-0">
         <div class="absolute inset-0 bg-gradient-to-b from-transparent via-slate-900/60 to-slate-900 pointer-events-none z-0"></div>
         <div class="text-center z-10 flex flex-col items-center relative mt-10">
-            <span id="splash-subtitle-text" class="bg-orange-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-6 tracking-wider shadow-lg shadow-orange-500/30 btn-brand">PREMIUM FOOD TRUCK</span>
-            <h1 id="splash-title-text" class="text-6xl font-extrabold text-white mb-2 leading-tight tracking-tighter drop-shadow-lg">TARI</h1>
-            <p id="splash-intro" class="text-slate-300 text-sm font-medium max-w-[250px] leading-relaxed">Delicious burgers and fries made with passion and served fresh daily.</p>
-        </div>
-        <div class="relative w-64 h-64 z-10 my-auto"><img id="splash-circle-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" class="w-full h-full object-cover rounded-full border-4 border-slate-800 shadow-2xl"></div>
+            <div class="text-center z-10 flex flex-col items-center relative mt-4"><div class="relative w-32 h-32 z-10 mb-4 rounded-3xl overflow-hidden animate-[fadeIn_0.5s] -mt-12 bg-transparent">
+        <img id="splash-circle-img" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd" class="w-full h-full object-contain">
+    </div>
+
+    <h1 id="splash-title-text" class="text-5xl font-bold text-white mb-2 leading-tight tracking-tighter drop-shadow-lg whitespace-pre-line">TARI</h1>
+    <p id="splash-intro" class="text-slate-300 text-sm font-medium max-w-[250px] leading-relaxed">برجر وبطاطس لذيذة محضرة بشغف وتقدم طازجة يومياً.</p>
+</div>
+</div>
+
         <button onclick="hideSplash()" class="w-full bg-orange-500 text-white font-bold py-4 rounded-2xl shadow-xl shadow-orange-500/20 active:scale-95 transition text-lg z-10 animate-pulse btn-brand flex items-center justify-center gap-2">Order Now <i class="fa-solid fa-arrow-up"></i></button>
     </div>
 
-    <div id="view-auth" class="fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center p-8 auth-hidden shadow-2xl transition-transform duration-300 transform translate-y-full">
+    <div id="view-auth" class="hidden fixed inset-0 z-[200] bg-white flex flex-col items-center justify-center p-8 auth-hidden shadow-2xl transition-transform duration-300 transform translate-y-full">
+
         <button onclick="closeAuth()" class="absolute top-6 right-6 text-slate-400 p-2 hover:text-slate-800"><i class="fa-solid fa-xmark text-2xl"></i></button>
         <div class="w-20 h-20 bg-orange-500 rounded-2xl flex items-center justify-center mb-6 shadow-xl shadow-orange-200 btn-brand"><i class="fa-solid fa-lock text-4xl text-white"></i></div>
         <h1 class="text-3xl font-bold mb-2">Login Required</h1>
@@ -344,7 +349,7 @@
 
 
        
-        <div id="view-home" class="pt-24 px-4 pb-36 fade-in">
+        <div id="view-home" class="pt-24 px-4 pb-24 fade-in">
 
 
             <div class="bg-slate-900 rounded-3xl p-6 text-white mb-6 relative overflow-hidden h-64 flex flex-col justify-center transform-gpu [mask-image:linear-gradient(white,white)]">
@@ -443,7 +448,20 @@
             </div>
 
             <div class="mb-8"><h3 class="font-bold text-lg mb-4 px-1">Order History</h3><div id="order-history" class="space-y-4"></div></div>
-           
+            
+           <a href="ar.html" class="w-full bg-white border border-slate-100 px-4 py-4 rounded-2xl mb-4 flex justify-between items-center shadow-sm active:scale-95 transition cursor-pointer">
+    <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-slate-50 flex items-center justify-center text-slate-600">
+            <i class="fa-solid fa-globe text-lg"></i>
+        </div>
+        <div>
+            <p class="font-bold text-slate-800 text-sm">Language</p>
+            <p class="text-[10px] text-slate-400 font-bold">Switch to Arabic</p>
+        </div>
+    </div>
+    <span class="font-bold text-orange-500 text-sm">العربية <i class="fa-solid fa-chevron-right ml-1 text-xs"></i></span>
+</a>
+
             <button onclick="handleLogout()" class="w-full text-red-500 font-bold bg-red-50 border border-red-100 px-6 py-4 rounded-2xl mb-6 active:scale-95 transition"><i class="fa-solid fa-right-from-bracket mr-2"></i> Log Out</button>
         </div>
 
@@ -645,21 +663,41 @@
         </div>
 
         <h3 class="text-2xl font-black text-slate-800 mb-2">Verify Phone</h3>
-        <p class="text-slate-500 text-sm mb-6">
+        <p class="text-slate-500 text-sm mb-2">
             We sent a 4-digit code to <br>
             <span id="otp-target-number" class="font-bold text-slate-800">...</span>
         </p>
-
-        <input type="tel" id="otp-input" 
-               class="w-full bg-slate-50 border-2 border-slate-200 rounded-2xl p-4 text-center text-3xl font-black tracking-[1em] text-slate-800 outline-none focus:border-orange-500 focus:bg-white transition-all placeholder:tracking-normal placeholder:text-sm placeholder:font-medium"
-               maxlength="4" 
-               placeholder="0000">
-        
-        <p id="otp-error" class="text-red-500 text-xs font-bold mt-3 hidden">
-            <i class="fa-solid fa-circle-exclamation"></i> Incorrect code
+        <p class="text-orange-500 text-xs font-bold mb-6">
+            <i class="fa-brands fa-whatsapp mr-1"></i> Check your WhatsApp
         </p>
 
-        <div class="mt-8 flex gap-3">
+        <div class="relative w-full max-w-[260px] mx-auto h-16 mb-6">
+            <input type="tel" id="otp-input"
+                   class="absolute inset-0 w-full h-full opacity-0 z-10 cursor-pointer font-bold text-transparent bg-transparent focus:outline-none caret-transparent"
+                   maxlength="4" pattern="\d*" autocomplete="one-time-code">
+
+            <div class="w-full h-full flex items-center justify-between pointer-events-none">
+                <div id="otp-box-0" class="w-12 h-14 border-2 border-slate-200 rounded-xl flex items-center justify-center text-2xl font-black text-slate-800 bg-slate-50 transition-all"></div>
+                <div class="text-slate-300 text-xl">•</div>
+                <div id="otp-box-1" class="w-12 h-14 border-2 border-slate-200 rounded-xl flex items-center justify-center text-2xl font-black text-slate-800 bg-slate-50 transition-all"></div>
+                <div class="text-slate-300 text-xl">•</div>
+                <div id="otp-box-2" class="w-12 h-14 border-2 border-slate-200 rounded-xl flex items-center justify-center text-2xl font-black text-slate-800 bg-slate-50 transition-all"></div>
+                <div class="text-slate-300 text-xl">•</div>
+                <div id="otp-box-3" class="w-12 h-14 border-2 border-slate-200 rounded-xl flex items-center justify-center text-2xl font-black text-slate-800 bg-slate-50 transition-all"></div>
+            </div>
+        </div>
+        
+        <p id="otp-error" class="text-red-500 text-xs font-bold mb-4 hidden">
+            <i class="fa-solid fa-circle-exclamation"></i> Incorrect or Expired Code
+        </p>
+
+        <div class="mb-6">
+            <button id="btn-resend-otp" onclick="resendOtp()" disabled class="text-slate-400 text-xs font-bold py-2 px-4 rounded-full border border-slate-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-slate-50 transition-colors">
+                Resend code in <span id="resend-timer">01:00</span>
+            </button>
+        </div>
+
+        <div class="flex gap-3">
             <button onclick="closeOtpModal()" class="flex-1 py-4 rounded-xl font-bold text-slate-400 hover:text-slate-600 hover:bg-slate-50 transition">
                 Cancel
             </button>
@@ -670,6 +708,7 @@
 
     </div>
 </div>
+
 
 <script>
     // --- GLOBAL VARIABLES ---
@@ -686,6 +725,8 @@
     var isStoreOpen = true; 
     let pendingOtpCode = null;
     let pendingUserData = null;
+    let otpExpiryTime = null;   // 🆕 For the 5-minute limit
+    let resendInterval = null;  // 🆕 For the 1-minute countdown
     
     // DATA & UI STATE
     var userData = null;
@@ -822,8 +863,30 @@ window.closeSplashAndOrder = () => {
         }); 
     }        
     
-    window.requireAuth = () => { if (currentUser) { switchView('profile'); } else { document.getElementById('view-auth').classList.remove('translate-y-full'); } };        
-    window.closeAuth = () => { document.getElementById('view-auth').classList.add('translate-y-full'); };
+        // UPDATED: Properly hides the login screen so it doesn't leak at the footer
+    window.requireAuth = () => { 
+        if (currentUser) { 
+            switchView('profile'); 
+        } else { 
+            const authView = document.getElementById('view-auth');
+            authView.classList.remove('hidden'); // 1. Make visible
+            // Small delay to let browser realize it's visible before sliding
+            setTimeout(() => {
+                authView.classList.remove('translate-y-full'); // 2. Slide Up
+            }, 10);
+        } 
+    };        
+
+    window.closeAuth = () => { 
+        const authView = document.getElementById('view-auth');
+        authView.classList.add('translate-y-full'); // 1. Slide Down
+        
+        // Wait for animation (300ms) then hide completely
+        setTimeout(() => {
+            authView.classList.add('hidden'); // 2. Hide
+        }, 300);
+    };
+
     window.toggleAuthMode = () => { document.getElementById('login-form').classList.toggle('hidden'); document.getElementById('signup-form').classList.toggle('hidden'); };
     
     window.handleLogin = async (btn) => { 
@@ -897,11 +960,29 @@ window.closeSplashAndOrder = () => {
         // Store data temporarily for the next step
         pendingOtpCode = generatedCode;
         pendingUserData = { email, password, name, phone: fullPhone, btnRef: btn };
+        
+        // 🆕 NEW: Set Expiry (5 mins from now)
+        otpExpiryTime = Date.now() + (5 * 60 * 1000);
+
+        // 🆕 NEW: Start the "Resend" countdown
+        startResendTimer();
+
+        // 🆕 NEW: Clear the inputs (So it's empty if they try again)
+        const ghostInput = document.getElementById('otp-input');
+        ghostInput.value = ''; // Clear real input
+        
+        // Clear visual boxes manually
+        for(let i=0; i<4; i++) {
+             const box = document.getElementById(`otp-box-${i}`);
+             box.innerText = '';
+             box.classList.remove('border-orange-500', 'bg-white');
+             box.classList.add('border-slate-200', 'bg-slate-50');
+        }
 
         // Show the UI Modal
         document.getElementById('otp-target-number').innerText = fullPhone;
         document.getElementById('otp-modal').classList.remove('hidden');
-    };
+        };
 
     // 2. The Verification: Checks the code
     window.confirmOtp = async () => {
@@ -1563,15 +1644,69 @@ window.closeSplashAndOrder = () => {
     };
 
     // --- 9. PROFILE & UTILS ---
-    async function loadUserProfile(uid) { let { data, error } = await sb.from('users').select('*').eq('id', uid).single(); if(error || !data) { data = { name: currentUser.user_metadata?.name || 'User', email: currentUser.email, phone: currentUser.user_metadata?.phone || '', points: 0, joined: new Date().toLocaleDateString(), avatar: null }; } userData = data; document.getElementById('profile-name').innerText = userData.name || "User"; document.getElementById('profile-email').innerText = userData.email || "No Email"; document.getElementById('profile-phone-input').value = userData.phone || "";
-     // Lock the input so they can't type
-document.getElementById('profile-phone-input').readOnly = true;
+        async function loadUserProfile(uid) { 
+        // 1. Try to fetch the user profile
+        let { data, error } = await sb.from('users').select('*').eq('id', uid).single(); 
+        
+        // 🛠️ SELF-HEALING: If profile is missing (error or null), create it immediately!
+        if(error || !data) { 
+            console.log("⚠️ Profile missing. Auto-fixing...");
+            
+            // Fallback: Get data from the Auth Metadata (which we know exists)
+            const meta = currentUser.user_metadata || {};
+            
+            // Construct a fresh profile object
+            const recoveryProfile = { 
+                id: uid, 
+                name: meta.name || 'User',    // Use Auth name or default
+                email: currentUser.email, 
+                phone: meta.phone || '',      // Use Auth phone
+                points: 0, 
+                joined: new Date().toLocaleDateString(), 
+                avatar: `https://ui-avatars.com/api/?name=${meta.name||'User'}&background=FF5722&color=fff` 
+            };
 
+            // Insert it into the DB so it's fixed forever
+            const { error: insertErr } = await sb.from('users').insert(recoveryProfile);
+            
+            if(insertErr) console.error("Auto-fix failed:", insertErr);
+            
+            // Use this fresh data for the UI right now
+            data = recoveryProfile;
+        } 
+        
+        // 2. Update Global Data
+        userData = data; 
+        
+        // 3. Update UI Elements
+        document.getElementById('profile-name').innerText = userData.name || "User"; 
+        document.getElementById('profile-email').innerText = userData.email || "No Email"; 
+        
+        // PHONE FIX: Set value and ensure it's locked
+        const phoneInput = document.getElementById('profile-phone-input');
+        phoneInput.value = userData.phone || "";
+        phoneInput.readOnly = true;
 
- document.getElementById('loyalty-points').innerText = userData.points || 0; document.getElementById('profile-joined').innerText = userData.joined || new Date(currentUser.created_at).toLocaleDateString(); const av = userData.avatar || `https://ui-avatars.com/api/?name=${userData.name}&background=FF5722&color=fff`; document.getElementById('profile-avatar').src = av; const headerAvatar = document.getElementById('header-avatar');
-if (headerAvatar) {
-    headerAvatar.src = av;
-} const { data: orders, count } = await sb.from('orders').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', {ascending: false}); userOrderCount = count || 0; document.getElementById('profile-total-orders').innerText = count || 0; if(orders && orders.length) { document.getElementById('order-history').innerHTML = orders.map(o => `<div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden group"><div class="flex justify-between items-start mb-3"><div><span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">#${o.id}</span><span class="text-[10px] text-slate-400 font-bold ml-2">${new Date(o.created_at).toLocaleDateString()}</span></div><span class="font-black text-slate-800">SR ${o.total.toFixed(2)}</span></div><div class="flex justify-between items-center border-t border-slate-50 pt-3"><span class="text-xs font-bold text-orange-500">${o.status}</span><button onclick="triggerReorder(${o.id})" class="bg-orange-50 text-orange-600 text-xs font-bold px-4 py-2 rounded-lg hover:bg-orange-100 transition"><i class="fa-solid fa-rotate-right mr-1"></i> Reorder</button></div></div>`).join(''); } else { document.getElementById('order-history').innerHTML = `<div class="text-center py-8 text-slate-400 text-sm">No past orders found.</div>`; } }
+        document.getElementById('loyalty-points').innerText = userData.points || 0; 
+        document.getElementById('profile-joined').innerText = userData.joined || new Date(currentUser.created_at).toLocaleDateString(); 
+        
+        const av = userData.avatar || `https://ui-avatars.com/api/?name=${userData.name}&background=FF5722&color=fff`; 
+        document.getElementById('profile-avatar').src = av; 
+        const headerAvatar = document.getElementById('header-avatar');
+        if (headerAvatar) headerAvatar.src = av; 
+        
+        // 4. Load Orders
+        const { data: orders, count } = await sb.from('orders').select('*', { count: 'exact' }).eq('user_id', uid).order('created_at', {ascending: false}); 
+        userOrderCount = count || 0; 
+        document.getElementById('profile-total-orders').innerText = count || 0; 
+        
+        if(orders && orders.length) { 
+            document.getElementById('order-history').innerHTML = orders.map(o => `<div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 relative overflow-hidden group"><div class="flex justify-between items-start mb-3"><div><span class="bg-slate-100 text-slate-600 text-[10px] font-bold px-2 py-1 rounded uppercase tracking-wider">#${o.id}</span><span class="text-[10px] text-slate-400 font-bold ml-2">${new Date(o.created_at).toLocaleDateString()}</span></div><span class="font-black text-slate-800">SR ${o.total.toFixed(2)}</span></div><div class="flex justify-between items-center border-t border-slate-50 pt-3"><span class="text-xs font-bold text-orange-500">${o.status}</span><button onclick="triggerReorder(${o.id})" class="bg-orange-50 text-orange-600 text-xs font-bold px-4 py-2 rounded-lg hover:bg-orange-100 transition"><i class="fa-solid fa-rotate-right mr-1"></i> Reorder</button></div></div>`).join(''); 
+        } else { 
+            document.getElementById('order-history').innerHTML = `<div class="text-center py-8 text-slate-400 text-sm">No past orders found.</div>`; 
+        } 
+    }
+
     async function togglePhoneEdit(btn) { const input = document.getElementById('profile-phone-input'); const container = document.getElementById('phone-container'); if (input.hasAttribute('readonly')) { input.removeAttribute('readonly'); input.focus(); btn.innerText = "Save"; btn.classList.add('bg-green-force'); container.classList.add('ring-2', 'ring-orange-100', 'bg-white'); } else { setBtnLoading(btn, true, 'Saving'); try { await sb.auth.updateUser({ data: { phone: input.value } }); await sb.from('users').update({ phone: input.value }).eq('id', currentUser.id); showToast("Phone Saved!"); input.setAttribute('readonly', true); btn.innerHTML = "Update"; btn.classList.remove('bg-green-force'); container.classList.remove('ring-2', 'ring-orange-100', 'bg-white'); } catch(e) { showToast("Error updating phone"); } btn.disabled = false; } }
     window.removeAvatar = async () => { if(!currentUser) return; await sb.from('users').update({ avatar: null }).eq('id', currentUser.id); loadUserProfile(currentUser.id); showToast("Avatar Removed"); }
     
@@ -1588,7 +1723,18 @@ if (headerAvatar) {
             if(uploadErr) { showToast("Image upload failed", true); setBtnLoading(btn, false, 'Save Picture'); return; }
             const { data } = sb.storage.from('images').getPublicUrl(fileName); 
             const { error: dbErr } = await sb.from('users').update({ avatar: data.publicUrl }).eq('id', currentUser.id);
-            if (!dbErr) { document.getElementById('profile-avatar').src = data.publicUrl; document.getElementById('header-avatar').src = data.publicUrl; showToast("Profile Picture Saved!"); }
+            if (!dbErr) { 
+    // 1. Update the big profile picture
+    const profilePic = document.getElementById('profile-avatar');
+    if(profilePic) profilePic.src = data.publicUrl;
+
+    // 2. Safely try to update the header avatar (if it exists)
+    const headerPic = document.getElementById('header-avatar');
+    if(headerPic) headerPic.src = data.publicUrl;
+
+    showToast("Profile Picture Saved!"); 
+}
+
             setBtnLoading(btn, false, 'Save Picture'); closeCropper(); 
         }, 'image/png'); 
     };
@@ -1729,6 +1875,91 @@ async function fetchCategories() {
             }
         });
     };
+    
+        // --- OTP VISUAL LOGIC ---
+    // This listens to the invisible input and updates the visible boxes
+    document.getElementById('otp-input').addEventListener('input', function(e) {
+        const val = e.target.value.replace(/\D/g, ''); // Numbers only
+        e.target.value = val; // Force input to be numbers
+        
+        // Fill the boxes
+        for(let i=0; i<4; i++) {
+            const box = document.getElementById(`otp-box-${i}`);
+            if (val[i]) {
+                box.innerText = val[i];
+                box.classList.add('border-orange-500', 'bg-white');
+                box.classList.remove('border-slate-200', 'bg-slate-50');
+            } else {
+                box.innerText = '';
+                box.classList.remove('border-orange-500', 'bg-white');
+                box.classList.add('border-slate-200', 'bg-slate-50');
+            }
+        }
+    });
+
+    // --- RESEND TIMER LOGIC ---
+    function startResendTimer() {
+        const btn = document.getElementById('btn-resend-otp');
+        const label = document.getElementById('resend-timer');
+        let timeLeft = 60; // 1 minute in seconds
+
+        btn.disabled = true;
+        btn.classList.add('text-slate-400');
+        btn.classList.remove('text-orange-500', 'border-orange-200');
+
+        if (resendInterval) clearInterval(resendInterval);
+
+        resendInterval = setInterval(() => {
+            timeLeft--;
+            
+            // Format time (e.g., "00:59")
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            label.innerText = `0${minutes}:${seconds < 10 ? '0'+seconds : seconds}`;
+
+            if (timeLeft <= 0) {
+                clearInterval(resendInterval);
+                // Enable the button
+                btn.disabled = false;
+                label.innerText = "Now";
+                btn.classList.remove('text-slate-400');
+                btn.classList.add('text-orange-500', 'border-orange-200');
+            }
+        }, 1000);
+    }
+
+    window.resendOtp = async () => {
+        if (!pendingUserData) return;
+
+        const btn = document.getElementById('btn-resend-otp');
+        setBtnLoading(btn, true, 'Sending...');
+
+        // Generate NEW code
+        const newCode = Math.floor(1000 + Math.random() * 9000).toString();
+        
+        // Send it
+        const { error } = await sb.rpc('send_whatsapp_otp', { 
+            phone: pendingUserData.phone, 
+            otp: newCode 
+        });
+
+        if (error) {
+            showToast("Failed to resend code", true);
+            setBtnLoading(btn, false);
+            return; // Don't reset timer if it failed
+        }
+
+        // Update Global Data
+        pendingOtpCode = newCode;
+        otpExpiryTime = Date.now() + (5 * 60 * 1000); // Reset 5-min expiry
+        
+        showToast("New code sent!");
+        
+        // Reset UI
+        setBtnLoading(btn, false); // Stop loading spinner
+        startResendTimer(); // Restart 1-min timer
+    };
+
        
     setupSwipe('productCard', closeModal);
     setupSwipe('checkoutCard', closeCart);
