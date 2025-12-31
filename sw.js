@@ -1,11 +1,11 @@
 const CACHE_NAME = 'tari-app-v1';
 const ASSETS = [
-  '/',
-  '/index.html',
-  '/ar.html',
-  '/manifest.json',
-  '/icon-192.png',
-  '/icon-512.png',
+  './',
+  './index.html',
+  './ar.html',
+  './manifest.json',
+  './icon-192.png',
+  './icon-512.png',
   'https://cdn.tailwindcss.com',
   'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
   'https://fonts.googleapis.com/css2?family=Righteous&display=swap',
