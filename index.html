@@ -459,7 +459,7 @@
 <body class="text-slate-800 select-none">
      
     <div id="preloader">
-    <div class="loader-content">
+    <div id="loader-truck" class="loader-content" style="display: none;">
         <img src="https://i.postimg.cc/d3J4V4xc/grok-video-2026-01-04-23-09-44.gif" class="loader-gif" alt="Loading...">
         <div class="loader-status">
             <h2 class="loader-text" dir="rtl">جاري تحميل البيانات</h2>
@@ -469,11 +469,12 @@
         </div>
     </div>
 
-    <div class="spinner-content hidden flex-col items-center justify-center">
+    <div id="loader-spinner" class="spinner-content hidden flex-col items-center justify-center">
         <i class="fa-solid fa-circle-notch fa-spin text-5xl text-orange-500 mb-4 drop-shadow-md"></i>
         <p class="text-slate-800 font-bold text-sm animate-pulse">جاري التحديث...</p>
     </div>
 </div>
+
 
 <div id="ai-onboarding" class="fixed inset-0 z-[600] hidden flex items-center justify-center">
     
@@ -1123,25 +1124,31 @@
     var userOrderCount = 0;
     var welcomeRule = { code: 'WELCOME30', value: 30, type: 'percent' };
     
-    // --- PRELOADER LOGIC ---
-const isReloading = sessionStorage.getItem('tari_session_active');
+        // --- PRELOADER LOGIC (Glitch-Free) ---
+    const isReloading = sessionStorage.getItem('tari_session_active');
+    const truck = document.getElementById('loader-truck');
+    const spinner = document.getElementById('loader-spinner');
+    const preloader = document.getElementById('preloader');
 
-if (isReloading) {
-    // 1. Activate "Window Mode" immediately
-    const p = document.getElementById('preloader');
-    if(p) p.classList.add('reload-mode');
+    if (isReloading) {
+        // 1. RELOAD: Show Spinner, Ensure Truck is GONE
+        if(truck) truck.style.display = 'none';
+        if(spinner) spinner.classList.remove('hidden');
+        if(preloader) preloader.classList.add('reload-mode');
 
-    // 2. Wait 3 seconds, then add .loaded to trigger the CSS fade
-    setTimeout(() => {
-        if(p && !p.classList.contains('loaded')) {
-            p.classList.add('loaded');
-        }
-    }, 5000); 
+        // 2. Fade out
+        setTimeout(() => {
+            if(preloader && !preloader.classList.contains('loaded')) {
+                preloader.classList.add('loaded');
+            }
+        }, 5000); 
 
-} else {
-    // First visit: Mark session
-    sessionStorage.setItem('tari_session_active', 'true');
-}
+    } else {
+        // 3. FIRST VISIT: Manually turn on the Truck
+        if(truck) truck.style.display = 'flex';
+        sessionStorage.setItem('tari_session_active', 'true');
+    }
+
 
 
 
