@@ -3513,6 +3513,7 @@ window.verifyLoginCode = async (btn) => {
 
         localStorage.setItem('tari_wa_session', JSON.stringify(currentUser));
         await loadUserProfile(user.id); listenToOrders(user.id);
+        setBtnLoading(btn, false, "تحقق ودخول");
         toggleSignin(false); closeAuth();
         showToast("أهلاً بك يا " + user.name.split(' ')[0]);
     }
